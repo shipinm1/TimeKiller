@@ -1,4 +1,9 @@
 <!--index.wxml-->
+<view class = "horizontal"> 
+    <button class = "left">买茶</button>
+    <button class = "right">预定</button>
+</view>
+
 <view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
@@ -7,9 +12,12 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
+
+
   <view class="usermotto">
     <!--<text class="user-motto">{{motto}}</text>-->
     <button bindtap='clickMe'>{{motto}}</button>
+    <map></map>
   </view>
   <!--<button bindtap='clickMe'>{{motto}}</button>-->
 </view>

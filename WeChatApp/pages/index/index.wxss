@@ -1,4 +1,11 @@
 /**index.wxss**/
+.horizontal {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -19,5 +26,22 @@
 .usermotto {
   font-size: 30px;
   color:blueviolet;
-  margin-top: 150px;
+  margin-top: 50px;
+}
+
+.left {
+  font-family: "黑体";
+  width: 49%;
+  color: #575757;
+  font-size: 30px;
+  border-radius: 30%;
+  background-color: #EED8AE;
+}
+.right {
+  font-family: "黑体";
+  width: 49%;
+  color: #575757;
+  font-size: 30px;
+  border-radius: 30%;
+  background-color: #EED8AE;
 }
