@@ -267,10 +267,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 1869140671272512, guid: 0c777e73fd681a7478b4f579486ace73, type: 2}
   spawnPosition: {x: 200, y: 75, z: 140}
-  enemyCount: 20
-  spawnWait: 0.5
+  enemyCount: 10
+  spawnWait: 0.6
   startWait: 1
-  waveType: 0
+  waveType: 5
 --- !u!4 &1451298796
 Transform:
   m_ObjectHideFlags: 0
