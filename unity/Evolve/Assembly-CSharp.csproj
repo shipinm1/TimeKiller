@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AutoBackground\BackGroundGenerator.cs" />
     <Compile Include="Assets\Script\BattleController.cs" />
     <Compile Include="Assets\Script\DestroyByBoundary.cs" />
     <Compile Include="Assets\Script\DestroyByContact.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Script\PlayerHealth.cs" />
     <Compile Include="Assets\Script\PowerPickup.cs" />
     <Compile Include="Assets\Script\Rotator.cs" />
+    <Compile Include="Assets\Script\Scroller.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/gsp/Desktop/unity/Evolve/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
