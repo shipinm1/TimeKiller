@@ -7,6 +7,8 @@ TagManager:
   - Boundary
   - BattleController
   - Enemy
+  - SpawnPoint
+  - Rooms
   layers:
   - Default
   - TransparentFX
@@ -43,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2234548179
     locked: 0

@@ -9,8 +9,8 @@ public class PowerPickup : MonoBehaviour {
 	private void OnTriggerEnter2D (Collider2D other)
 	{
 		if (other.tag == "Player") {
-			PlayerHealth PlayerHealth = other.gameObject.GetComponent<PlayerHealth>();
-			PlayerHealth.Heal(hp);
+			CharacterStats playerHealth = other.gameObject.GetComponent<CharacterStats>();
+			playerHealth.Heal(hp);
 			Destroy(gameObject);
 		}
 	}

@@ -2,22 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BattleController : MonoBehaviour {
 
     public GameObject enemy;
-    public Vector3 spawnPosition;
+    
     public int enemyCount;
     public float spawnWait;
     public float startWait;
     public int waveType;
+    public GameObject player;
+
+    private Vector2 spawnPosition;
+    private Mover mover;
+    private float direction;
+    private Vector2 target;
+    private Vector2 offset = new Vector2(10f,5f);
+    private float frameCount = 0;
+    
 
     void Start()
     {
-        StartCoroutine(Waves());
+
+        StartCoroutine(Waves(spawnPosition));
+        mover = enemy.GetComponent<Mover>();
+
+    }
+    private void LateUpdate()
+    {
+        spawnPosition = (Vector2)player.transform.position + offset;
+        //Debug.Log("Updated spawnPosition: " + spawnPosition + "\n Player position: " + player.transform.position);
+        //spawn things every 2 sec
+        //The reason why without the IEnumerator is that
+        //Once IEnumerator started, spawnPosition Can not be changed inside the IEnumerator
+        if (frameCount == spawnWait * 30) // 30frame/sec
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform.position;     
+            Vector2 position = new Vector2(spawnPosition.x, Random.Range(-spawnPosition.y, spawnPosition.y));
+            float degree = Mathf.Atan((position.x - target.x) / (position.y - target.y)) * (180 / Mathf.PI);
+            if (degree > 0)
+            {
+                direction = 180 - degree;
+            }
+            else
+            {
+                direction = -degree;
+            }
+                
+            Quaternion rotation = Quaternion.Euler(0, 0, direction);
+            Instantiate(enemy, position, rotation);
+            frameCount = 0;    
+        }
+        frameCount += 1;
     }
 
 
-    IEnumerator Waves()
+    IEnumerator Waves(Vector2 spawnPosition)
     {
         if (waveType == 1)
         {
@@ -27,8 +67,9 @@ public class BattleController : MonoBehaviour {
             {
                 for (int i = 0; i < enemyCount; i++)
                 {
-                    Vector3 position = new Vector3(Random.Range(spawnPosition.x, -spawnPosition.x), spawnPosition.y, spawnPosition.z);
-                    Quaternion rotation = Quaternion.identity;
+                    mover.speed = 100; // can change moving speed of the object
+                    Vector2 position = new Vector2(Random.Range(spawnPosition.x, -spawnPosition.x), spawnPosition.y);
+                    Quaternion rotation = Quaternion.Euler(180, 0, 0);
                     Instantiate(enemy, position, rotation);
                     yield return new WaitForSeconds(spawnWait);
                 }
@@ -42,8 +83,8 @@ public class BattleController : MonoBehaviour {
             {
                 for (int i = 0; i < enemyCount; i++)
                 {
-                    Vector3 position = new Vector3(Random.Range(spawnPosition.x, -spawnPosition.x), spawnPosition.y, -spawnPosition.z);
-                    Quaternion rotation = Quaternion.Euler(0, 180, 0);
+                    Vector2 position = new Vector2(Random.Range(spawnPosition.x, -spawnPosition.x), -spawnPosition.y);
+                    Quaternion rotation = Quaternion.Euler(0, 0, 0);
                     Instantiate(enemy, position, rotation);
                     yield return new WaitForSeconds(spawnWait);
                 }
@@ -57,8 +98,8 @@ public class BattleController : MonoBehaviour {
             {
                 for (int i = 0; i < enemyCount; i++)
                 {
-                    Vector3 position = new Vector3(-spawnPosition.x, spawnPosition.y, Random.Range(spawnPosition.z, -spawnPosition.z));
-                    Quaternion rotation = Quaternion.Euler(0, 270, 0);
+                    Vector2 position = new Vector2(-spawnPosition.x, Random.Range(-spawnPosition.y, spawnPosition.y));
+                    Quaternion rotation = Quaternion.Euler(0, 0, 270);
                     Instantiate(enemy, position, rotation);
                     yield return new WaitForSeconds(spawnWait);
                 }
@@ -72,8 +113,8 @@ public class BattleController : MonoBehaviour {
             {
                 for (int i = 0; i < enemyCount; i++)
                 {
-                    Vector3 position = new Vector3(spawnPosition.x, spawnPosition.y, Random.Range(spawnPosition.z, -spawnPosition.z));
-                    Quaternion rotation = Quaternion.Euler(0, 90, 0);
+                    Vector2 position = new Vector2(spawnPosition.x, Random.Range(-spawnPosition.y, spawnPosition.y));
+                    Quaternion rotation = Quaternion.Euler(0, 0, 90);
                     Instantiate(enemy, position, rotation);
                     yield return new WaitForSeconds(spawnWait);
                 }
@@ -87,19 +128,51 @@ public class BattleController : MonoBehaviour {
             {
                 for (int i = 0; i < enemyCount; i++)
                 {
-                    Vector3 posTop = new Vector3(Random.Range(spawnPosition.x, -spawnPosition.x), spawnPosition.y, spawnPosition.z);
-                    Vector3 posBottom = new Vector3(Random.Range(spawnPosition.x, -spawnPosition.x), spawnPosition.y, -spawnPosition.z);
-                    Vector3 posLeft = new Vector3(-spawnPosition.x, spawnPosition.y, Random.Range(spawnPosition.z, -spawnPosition.z));
-                    Vector3 posRight = new Vector3(spawnPosition.x, spawnPosition.y, Random.Range(spawnPosition.z, -spawnPosition.z));
+                    Vector2 posTop = new Vector2(Random.Range(spawnPosition.x, -spawnPosition.x), spawnPosition.y);
+                    Vector2 posBottom = new Vector2(Random.Range(spawnPosition.x, -spawnPosition.x), -spawnPosition.y);
+                    Vector2 posLeft = new Vector2(-spawnPosition.x, Random.Range(-spawnPosition.y, spawnPosition.y));
+                    Vector2 posRight = new Vector2(spawnPosition.x, Random.Range(-spawnPosition.y, spawnPosition.y));
                     //Quaternion rotation = Quaternion.identity;
-                    Instantiate(enemy, posTop, Quaternion.Euler(0, 0, 0));
-                    Instantiate(enemy, posBottom, Quaternion.Euler(0, 180, 0));
-                    Instantiate(enemy, posLeft, Quaternion.Euler(0, 270, 0));
-                    Instantiate(enemy, posRight, Quaternion.Euler(0, 90, 0));
+                    Instantiate(enemy, posTop, Quaternion.Euler(180, 0, 0));
+                    Instantiate(enemy, posBottom, Quaternion.Euler(0, 0, 0));
+                    Instantiate(enemy, posLeft, Quaternion.Euler(0, 0, 270));
+                    Instantiate(enemy, posRight, Quaternion.Euler(0, 0, 90));
                     yield return new WaitForSeconds(spawnWait);
                 }
             }
         }
 
+        else if (waveType == 6)
+        {
+            Debug.Log("Inside coroutine player position: " + player.transform.position);
+            //spawn towards player's current location
+            yield return new WaitForSeconds(startWait);
+            target = GameObject.FindGameObjectWithTag("Player").transform.position;
+            bool order = true;
+            while (order == true)
+            {
+                for (int i = 0; i < enemyCount; i++)
+                {
+                    Vector2 position = new Vector2(spawnPosition.x, Random.Range(-spawnPosition.y, spawnPosition.y));
+                    float degree = Mathf.Atan((position.x - target.x) / (position.y - target.y)) * (180 / Mathf.PI);
+                    if (degree > 0)
+                    {
+                        direction = 180 - degree;
+                    }
+                    else
+                    {
+                        direction =  -degree;
+                    }
+                    //Debug.Log(direction);
+                    Quaternion rotation = Quaternion.Euler(0, 0, direction);
+                    Instantiate(enemy, position, rotation);
+                    yield return new WaitForSeconds(spawnWait);
+                    order = false;
+                    //yield return null;
+                }
+            }
+        }
+
     }
+    
 }
