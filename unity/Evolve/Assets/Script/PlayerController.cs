@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CombatTextManager.Instance.CreateText(transform.position, "yo!");
+        }
 		horizontal = Input.GetAxisRaw("Horizontal");
 		vertical = Input.GetAxisRaw("Vertical");
 		rb.velocity = new Vector2(speed * horizontal, speed * vertical);
@@ -61,7 +65,7 @@ public class PlayerController : MonoBehaviour {
         }
 	}
 	
-	void OnCollisionEnter (Collision2D other)
+	void OnCollisionEnter (Collision other)
     {
         if(other.gameObject.name == "good")
         {

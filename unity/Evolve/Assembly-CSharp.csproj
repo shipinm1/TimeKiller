@@ -83,6 +83,8 @@
     <Compile Include="Assets\Script\Rotator.cs" />
     <Compile Include="Assets\Script\Scroller.cs" />
     <Compile Include="Assets\Script\Stat.cs" />
+    <Compile Include="Assets\Script\UI scripts\CombatText.cs" />
+    <Compile Include="Assets\Script\UI scripts\CombatTextManager.cs" />
     <Compile Include="Assets\Script\UI scripts\EnvItemDatabase.cs" />
     <Compile Include="Assets\Script\UI scripts\EvnItemDatabase.cs" />
     <Compile Include="Assets\Script\UI scripts\Item.cs" />
