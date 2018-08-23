@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ShopScrollList : MonoBehaviour {
 
+    public static ShopScrollList shopScrollList;
     public Transform shopContent;
 
     public SimpleObjectPool objectPool;
@@ -12,8 +13,22 @@ public class ShopScrollList : MonoBehaviour {
     public Button[] topmenu = new Button[3];
 
     private List<Item> shopList;
-	// Use this for initialization
-	void Start () {
+
+   /** void Awake()
+    {
+        //instance = this;
+        if (shopScrollList == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            shopScrollList = this;
+        }
+        else if (shopScrollList != this)
+        {
+            Destroy(gameObject);
+        }
+    }**/
+
+    void Start () {
         shopList = new List<Item>();
 	}
 

@@ -8,6 +8,10 @@ public class Rotator : MonoBehaviour {
     
     private void Start()
     {
-        GetComponent<Rigidbody>().angularVelocity = Random.insideUnitSphere * tumble;
+        GetComponent<Rigidbody2D>().angularVelocity = Random.Range(tumble,0);
     }
+    //private void Update()
+    //{
+    //    GetComponent<Rigidbody2D>().transform.Rotate(Vector3.forward * tumble * Time.deltaTime);
+    //}
 }

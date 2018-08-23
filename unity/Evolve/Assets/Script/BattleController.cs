@@ -9,24 +9,26 @@ public class BattleController : MonoBehaviour {
     public GameObject hazard;
     public GameObject player;
     public GameObject benefit;
+    public GameObject volcano;
+    public Vector2 BadThingsSpawnRange;
     public int resetTimer;
     public int volcanoTimer;
     public int enemyCount;
     public int waveType;
     public float spawnWait;
     public float startWait;
-    public float environmentalDamage; 
-
+    public float environmentalDamage;
+    public float beneftitWait;
+    
     private Vector2 spawnPosition;
     private Vector2 target;
-    private Vector2 offset = new Vector2(10f,5f);
+    private Vector2 offset = new Vector2(10f,0);
     private Vector2 preVolcaPos;
     private Mover mover;
+    private GameObject temp;
     private float direction;
     private float frameCount = 0;
     private int spawnCount;
-
-    
 
     void Start()
     {
@@ -37,17 +39,20 @@ public class BattleController : MonoBehaviour {
     }
     private void LateUpdate()
     {
-        spawnPosition = (Vector2)player.transform.position + offset;
+        target = GameObject.FindGameObjectWithTag("Player").transform.position;
+        
         //Debug.Log("Updated spawnPosition: " + spawnPosition + "\n Player position: " + player.transform.position);
         //spawn things every 2 sec
         //The reason why without the IEnumerator is that
         //Once IEnumerator started, spawnPosition Can not be changed inside the IEnumerator
 
-        if (frameCount % (spawnWait * 30) == 0 && frameCount != 0) // 1*spawnWait, spawn from right side towards player
+
+        //Things 1*spawnWait, spawn from right side towards player
+        if (frameCount % (((int)Random.Range(BadThingsSpawnRange.x,BadThingsSpawnRange.y)) * 15) == 0 && frameCount != 0) 
         {
-            target = GameObject.FindGameObjectWithTag("Player").transform.position;     
-            Vector2 position = new Vector2(spawnPosition.x, Random.Range(-spawnPosition.y, spawnPosition.y));
-            float degree = Mathf.Atan((position.x - target.x) / (position.y - target.y)) * (180 / Mathf.PI);
+            spawnPosition = target + offset;
+            Vector2 position = new Vector2(spawnPosition.x, Random.Range(-6, 6));
+            float degree = Mathf.Atan(10 / (position.y - target.y)) * (180 / Mathf.PI);
             if (degree > 0)
             {
                 direction = 180 - degree;
@@ -56,38 +61,43 @@ public class BattleController : MonoBehaviour {
             {
                 direction = -degree;
             }
+            
             Quaternion rotation = Quaternion.Euler(0, 0, direction);
-            Debug.Log(180-direction + "" + " " +  direction);
+            //Debug.Log(180-direction + "" + " " +  direction);
             Instantiate(hazard, position, rotation);
             spawnCount += 1;
         }
 
-        if (frameCount % (spawnWait * 45) == 0 && frameCount != 0)// 1.5*spawnWait, spawn from left side towards player
+        //Things 1.5*spawnWait, spawn from left side towards player
+        if (frameCount % (((int)Random.Range(BadThingsSpawnRange.x, BadThingsSpawnRange.y)) * 20) == 0 && frameCount != 0)
         {
-            target = GameObject.FindGameObjectWithTag("Player").transform.position;
-            Vector2 position = new Vector2(spawnPosition.x, Random.Range(-spawnPosition.y, spawnPosition.y));
-            float degree = Mathf.Atan((position.x - target.x) / (position.y - target.y)) * (180 / Mathf.PI);
+            spawnPosition = target - offset;
+            Vector2 position = new Vector2(spawnPosition.x, Random.Range(-6, 6));
+            float degree = Mathf.Atan(-10 / (position.y - target.y)) * (180 / Mathf.PI);
             if (degree > 0)
             {
-                direction = 180 - degree;
+                direction = 360 - degree;
             }
             else
             {
-                direction = -degree;
+                direction = 300 + degree;
+                Debug.Log("The degree: " + degree);
             }
-            Vector2 oppoSide = new Vector2(-position.x, position.y);
+            //Debug.Log("The degree: " + degree);
+            //Debug.Log("The direction: " + direction);
             Quaternion rotation = Quaternion.Euler(0, 0, direction);
-            Quaternion oppoRotation = Quaternion.Euler(0, 0, 360 - direction);
-            Debug.Log(180 - direction + "" + " " + direction);
-            Instantiate(hazard, oppoSide, oppoRotation);
+            Instantiate(hazard, position, rotation);
         }
 
+        //spawn volcano
         if (frameCount == volcanoTimer * 30)
         {
-            target = GameObject.FindGameObjectWithTag("Player").transform.position;
             preVolcaPos = new Vector2(Random.Range(target.x - 2, target.x + 2), -4);
+            temp = Instantiate(volcano, preVolcaPos, Quaternion.identity);
+            preVolcaPos.y += 1;
         }
-        if (frameCount > volcanoTimer * 30 && frameCount < volcanoTimer * 30 + 30) // spawn volcana random around player
+
+        if (frameCount > volcanoTimer * 30 + 50 && frameCount < volcanoTimer * 30 + 70) // spawn volcana random around player
         {
             for (int i = 0; i < 5; i++)
             {
@@ -96,6 +106,21 @@ public class BattleController : MonoBehaviour {
             }
         }
 
+        if (frameCount == volcanoTimer * 30 + 75) //destroy the volcano
+        {
+            Destroy(temp);
+        }
+
+        //spawn normal benefit
+        if (frameCount % (beneftitWait * 30) == 0)
+        {
+            Vector2 posLeft = new Vector2(target.x - 10, Random.Range(-4, 4));
+            Vector2 posRight = new Vector2(target.x + 10, Random.Range(-4, 4));
+            Instantiate(benefit, posLeft, Quaternion.Euler(0, 0, Random.Range(235, 305)));
+            Instantiate(benefit, posRight, Quaternion.Euler(0, 0, Random.Range(55, 125)));
+        }
+
+        //frame update/reset
         frameCount += 1;
         if (frameCount == resetTimer * 30) 
         {
@@ -110,7 +135,7 @@ public class BattleController : MonoBehaviour {
  |_|\_| \___/  \__|   /_/ \_\  \_/  \__,_| |_| |_| \__,_| |_.__/ |_| \___|
     */
 
-    //currently only using IEnumerator for random small things to spawn
+    //Currently not using this as spawner
     IEnumerator Waves()
     {
         if (waveType == 1)
@@ -198,7 +223,7 @@ public class BattleController : MonoBehaviour {
 
         else if (waveType == 6)
         {
-            Debug.Log("Inside coroutine player position: " + player.transform.position);
+            //Debug.Log("Inside coroutine player position: " + player.transform.position);
             //spawn towards player's current location
             yield return new WaitForSeconds(startWait);
             target = GameObject.FindGameObjectWithTag("Player").transform.position;

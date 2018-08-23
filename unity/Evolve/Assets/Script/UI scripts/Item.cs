@@ -13,11 +13,12 @@ public class Item : ScriptableObject {
     public Sprite icon;
 
     public virtual void Use() {
-       
+        //Debug.Log("a");
     }
 
     public virtual Item Copy() {
         //var item = (Item)MemberwiseClone();
+        
         return null;
     }
 

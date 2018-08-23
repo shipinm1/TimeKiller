@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AutoBackground\BackGroundGenerator.cs" />
+    <Compile Include="Assets\JazzCreateCoolFont\FontScene\Script\FontTxt_Script.cs" />
     <Compile Include="Assets\Script\BackGroundScroller.cs" />
     <Compile Include="Assets\Script\BattleController.cs" />
     <Compile Include="Assets\Script\CameraController.cs" />
@@ -83,21 +84,26 @@
     <Compile Include="Assets\Script\Rotator.cs" />
     <Compile Include="Assets\Script\Scroller.cs" />
     <Compile Include="Assets\Script\Stat.cs" />
+    <Compile Include="Assets\Script\UI scripts\ChangeScene.cs" />
     <Compile Include="Assets\Script\UI scripts\CombatText.cs" />
     <Compile Include="Assets\Script\UI scripts\CombatTextManager.cs" />
     <Compile Include="Assets\Script\UI scripts\EnvItemDatabase.cs" />
     <Compile Include="Assets\Script\UI scripts\EvnItemDatabase.cs" />
+    <Compile Include="Assets\Script\UI scripts\GameControl.cs" />
     <Compile Include="Assets\Script\UI scripts\Item.cs" />
     <Compile Include="Assets\Script\UI scripts\ItemButton.cs" />
     <Compile Include="Assets\Script\UI scripts\LevelUpItem.cs" />
     <Compile Include="Assets\Script\UI scripts\OneTimeItem.cs" />
     <Compile Include="Assets\Script\UI scripts\PlayerItemDatabase.cs" />
     <Compile Include="Assets\Script\UI scripts\PlayerLevelUpItem.cs" />
+    <Compile Include="Assets\Script\UI scripts\ScreenInfoUpdate.cs" />
     <Compile Include="Assets\Script\UI scripts\ShopScrollList.cs" />
     <Compile Include="Assets\Script\UI scripts\SimpleObjectPool.cs" />
     <Compile Include="Assets\Script\UI scripts\StatMenu.cs" />
     <Compile Include="Assets\Simple UI\Samples\IconPreview.cs" />
+    <None Include="Assets\JazzCreateCoolFont\Documentation\JazzCreateCoolFont_VersionHistory.txt" />
     <None Include="Assets\Simple UI\Fonts\OFL.txt" />
+    <None Include="Assets\JazzCreateCoolFont\Documentation\JazzCreateAltKeys_CoolFontExt.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/gsp/Desktop/unity/Evolve/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

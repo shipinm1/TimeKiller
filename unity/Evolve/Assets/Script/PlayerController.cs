@@ -22,9 +22,14 @@ public class PlayerController : MonoBehaviour {
 	{
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            CombatTextManager.Instance.CreateText(transform.position, "yo!");
+            CombatTextManager.Instance.CreateText(transform.position, "yo!", Color.blue, false);
         }
-		horizontal = Input.GetAxisRaw("Horizontal");
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            CombatTextManager.Instance.CreateText(transform.position, "YYYYYo!", Color.blue, true);
+        }
+
+        horizontal = Input.GetAxisRaw("Horizontal");
 		vertical = Input.GetAxisRaw("Vertical");
 		rb.velocity = new Vector2(speed * horizontal, speed * vertical);
         if (horizontal != 0 || vertical != 0)

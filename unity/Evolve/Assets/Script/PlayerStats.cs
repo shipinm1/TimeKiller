@@ -24,7 +24,16 @@ public class PlayerStats : CharacterStats {
     //Call on Awake
     void Awake()
     {
-        instance = this;
+        //instance = this;
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     #endregion

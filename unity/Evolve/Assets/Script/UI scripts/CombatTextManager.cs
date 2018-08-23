@@ -9,6 +9,7 @@ public class CombatTextManager : MonoBehaviour {
     public GameObject textPrefab;
     public float speed;
     public Vector3 direction;
+    public float fadeTime;
     private static CombatTextManager instance;
     
     public static CombatTextManager Instance {
@@ -22,11 +23,14 @@ public class CombatTextManager : MonoBehaviour {
         }
     }
 
-    public void CreateText(Vector3 position, string text) {
+    public void CreateText(Vector3 position, string text, Color color, bool crit)
+    {
         GameObject combatText = Instantiate(textPrefab, position, Quaternion.identity);
         combatText.transform.SetParent(canvas);
         combatText.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
-        combatText.GetComponent<CombatText>().InitialialCombatText(speed, direction);
+        combatText.GetComponent<CombatText>().InitialialCombatText(speed, direction, fadeTime, crit);
         combatText.GetComponent<Text>().text = text;
+        combatText.GetComponent<Text>().color = color;
+
     }
 }

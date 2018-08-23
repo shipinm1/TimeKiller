@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222206519525335986}
   - component: {fileID: 114827694704243418}
   - component: {fileID: 114144534196098018}
+  - component: {fileID: 95028638883876314}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -29,6 +30,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &95028638883876314
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1066048356106144}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7d0ab0012abb20e48acd92bba866313e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114144534196098018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -40,6 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232a64179e9cd58468414fdf9939169b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  critAnimation: {fileID: 7400000, guid: 1bbc5bf76fa06bf47b8ae5b076d1c993, type: 2}
 --- !u!114 &114827694704243418
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,6 +6,7 @@ public class StatMenu : MonoBehaviour
 {
     public Text fireRes;
     public Text coldRes;
+    public Text health;
     // Use this for initialization
     void Start()
     {
@@ -17,6 +18,7 @@ public class StatMenu : MonoBehaviour
     {
         fireRes.text = PlayerStats.instance.fireResist.GetValue().ToString();
         coldRes.text = PlayerStats.instance.coldResist.GetValue().ToString();
+        health.text = PlayerStats.instance.health.GetValue().ToString();
     }
 
 }

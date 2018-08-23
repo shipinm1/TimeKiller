@@ -18,7 +18,12 @@ public class Player : MonoBehaviour {
 	public PlayerStats playerStats;
 	public PlayerController playerController;
 
-	public void Dead () 
+    public void Start()
+    {
+        playerStats = GetComponent<PlayerStats>();
+        playerController = GetComponent<PlayerController>();
+    }
+    public void Dead () 
 	{
 		
 	}

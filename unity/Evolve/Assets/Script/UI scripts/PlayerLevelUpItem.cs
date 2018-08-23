@@ -11,6 +11,7 @@ public class PlayerLevelUpItem : LevelUpItem {
     public override void Use()
     {
         base.Use();
+        //Debug.Log("b");
         itemLevel++;
         switch (playerStatType) {
             case PlayerStatType.fireResist:
