@@ -1,0 +1,10 @@
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\bin\Debug\MwCapture.exe.config
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\bin\Debug\MwCapture.exe
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\bin\Debug\MwCapture.pdb
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\obj\Debug\MwCapture.csprojAssemblyReference.cache
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\obj\Debug\MwCapture.Main.resources
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\obj\Debug\MwCapture.Properties.Resources.resources
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\obj\Debug\MwCapture.csproj.GenerateResource.cache
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\obj\Debug\MwCapture.csproj.CoreCompileInputs.cache
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\obj\Debug\MwCapture.exe
+C:\Users\gsp\Desktop\MwCapture\MwCapture\MwCapture\obj\Debug\MwCapture.pdb
